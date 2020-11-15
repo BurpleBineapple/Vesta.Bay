@@ -1,0 +1,2 @@
+/datum/gear_tweak/proc/get_contents(var/metadata)
+	return

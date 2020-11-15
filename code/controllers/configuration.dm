@@ -34,6 +34,9 @@ var/list/gamemode_cache = list()
 	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/vote_no_dead = 0				// dead people can't vote (tbi)
 	var/vote_no_dead_crew_transfer = 0	// dead people can't vote on crew transfer votes
+//	var/enable_authentication = 0		// goon authentication
+	var/del_new_on_log = 1				// del's new players if they log before they spawn in
+	var/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
 	var/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
@@ -207,6 +210,8 @@ var/list/gamemode_cache = list()
 	var/do_not_prevent_spam = FALSE //If this is true, skips spam prevention for user actions; inputs, verbs, macros, etc.
 	var/max_acts_per_interval = 140 //Number of actions per interval permitted for spam protection.
 	var/act_interval = 0.1 SECONDS //Interval for spam prevention.
+
+	var/job_whitelist = FALSE //Do we use the job whitelist? Set to false so devs don't have to set config options.
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -710,6 +715,10 @@ var/list/gamemode_cache = list()
 				if ("minimum_player_age")
 					config.minimum_player_age = text2num(value)
 
+				//############# Ported from Vesta
+				if ("job_whitelist")
+					config.job_whitelist = TRUE
+					//############# Ported from Vesta
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
