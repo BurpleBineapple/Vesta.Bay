@@ -676,3 +676,11 @@ proc/dd_sortedTextList(list/incoming)
 		var/atom/A = key
 		if(A.type == T)
 			return A
+			
+//#### Port Vesta
+//Checks if the list is empty
+proc/isemptylist(list/list)
+	if(!list.len)
+		return 1
+	return 0
+
