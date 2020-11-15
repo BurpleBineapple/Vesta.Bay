@@ -180,6 +180,10 @@ var/list/gear_datums = list()
 		entry += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
 		var/allowed = 1
+		if(allowed && G.banned_species)
+			if(pref.species in G.banned_species)
+				allowed = FALSE
+				entry += "<br><i><font color=cc5555>Not supported by current species.</font></i>"
 		if(allowed && G.allowed_roles)
 			var/good_job = 0
 			var/bad_job = 0
@@ -315,6 +319,29 @@ var/list/gear_datums = list()
 		hide_unavailable_gear = !hide_unavailable_gear
 		return TOPIC_REFRESH
 	return ..()
+/* //## Port Vesta @r4iser -> Do we need it? Test
+/datum/category_item/player_setup_item/loadout/update_setup(var/savefile/preferences, var/savefile/character)
+	if(preferences["version"] < 14)
+		var/list/old_gear = character["gear"]
+		if(istype(old_gear)) // During updates data isn't sanitized yet, we have to do manual checks
+			if(!istype(pref.gear_list)) pref.gear_list = list()
+			if(!pref.gear_list.len) pref.gear_list.len++
+			pref.gear_list[1] = old_gear
+		return 1
+
+	if(preferences["version"] < 15)
+		if(istype(pref.gear_list))
+			// Checks if the key of the pref.gear_list is a list.
+			// If not the key is replaced with the corresponding value.
+			// This will convert the loadout slot data to a reasonable and (more importantly) compatible format.
+			// I.e. list("1" = loadout_data1, "2" = loadout_data2, "3" = loadout_data3) becomes list(loadout_data1, loadout_data2, loadaout_data3)
+			for(var/index = 1 to pref.gear_list.len)
+				var/key = pref.gear_list[index]
+				if(islist(key))
+					continue
+				var/value = pref.gear_list[key]
+				pref.gear_list[index] = value
+		return 1*/
 
 /datum/gear
 	var/display_name       //Name/index. Must be unique.
@@ -326,11 +353,14 @@ var/list/gear_datums = list()
 	var/list/allowed_branches //Service branches that can spawn with it.
 	var/list/allowed_skills //Skills required to spawn with this item.
 	var/whitelisted        //Term to check the whitelist for..
+	var/list/banned_species //For plasmaman honestly.
 	var/sort_category = "General"
 	var/flags              //Special tweaks in New
 	var/custom_setup_proc  //Special tweak in New
 	var/category
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
+	var/implanted = FALSE //is this item implanted? Used for augments / Implants.
+	var/doubleup = FALSE //Do we have two? Used for muscule augments right now, but should work for anything assuming the augment does onInstall()
 
 /datum/gear/New()
 	if(HAS_FLAGS(flags, GEAR_HAS_TYPE_SELECTION|GEAR_HAS_SUBTYPE_SELECTION))
@@ -378,6 +408,9 @@ var/list/gear_datums = list()
 	var/obj/item/item = spawn_item(H, H, metadata)
 	item.add_fingerprint(H)
 
+	if(implanted)
+		implant_into_mob(H, item)
+		return //avoids weird stuff.
 	var/atom/placed_in = H.equip_to_storage(item)
 	if(placed_in)
 		to_chat(H, "<span class='notice'>Placing \the [item] in your [placed_in.name]!</span>")
@@ -387,3 +420,25 @@ var/list/gear_datums = list()
 		to_chat(H, "<span class='notice'>Placing \the [item] in your hands!</span>")
 	else
 		to_chat(H, "<span class='danger'>Dropping \the [item] on the ground!</span>")
+
+/datum/gear/proc/implant_into_mob(var/mob/living/carbon/human/H, obj/item/I)
+	var/obj/item/organ/external/organ_to_implant_into = H.get_organ(BP_CHEST)
+
+	if(istype(I, /obj/item/organ/internal/augment)) //We are an augment, figure out the parent organ we go into.
+		var/obj/item/organ/internal/augment/A = I
+		//check if the implant requires a robotic limb.
+		var/implantloc = A.parent_organ
+		organ_to_implant_into = H.get_organ(implantloc)
+		if(A.augment_flags == AUGMENTATION_MECHANIC)
+			if(!BP_IS_ROBOTIC(organ_to_implant_into))
+				to_chat(H, SPAN_WARNING("Your [organ_to_implant_into.name] is not robotic, and therefore the [A] can not be installed!"))
+				qdel(A)
+				return
+		A.replaced(H, organ_to_implant_into)
+		to_chat(H, SPAN_NOTICE("Implanting you with [A] in your [organ_to_implant_into.name]!"))
+
+	if(istype(I, /obj/item/weapon/implant))
+		var/obj/item/weapon/implant/IM = I
+		IM.forceMove(organ_to_implant_into)
+		IM.implanted(H) //just in case
+		to_chat(H, SPAN_NOTICE("Implanting you with [IM] in your [organ_to_implant_into.name]!"))

@@ -2,9 +2,15 @@
 
 #if DM_VERSION < 513
 
+#define any2ref(x) "\ref[x]"
+
 #define islist(A) istype(A, /list)
 
 #define ismovable(A) istype(A, /atom/movable)
+
+#else
+
+#define any2ref(x) ref(x)
 
 #endif
 
@@ -123,7 +129,21 @@
 #define to_file(handle, value)                to_target(handle, value)
 #define to_save(handle, value)                to_target(handle, value) //semantics
 #define from_save(handle, target_var)         from_target(handle, target_var)
-
+/*
+//### Port from Vesta general macros
+#define to_chat(target, message)                            target << (message)
+#define to_world(message)                                   world << (message)
+#define to_world_log(message)                               world.log << (message)
+#define sound_to(target, sound)                             target << (sound)
+#define to_file(file_entry, source_var)                     file_entry << (source_var)
+#define from_file(file_entry, target_var)                   file_entry >> (target_var)
+#define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
+#define close_browser(target, browser_name)                 target << browse(null, browser_name)
+#define show_image(target, image)                           target << (image)
+#define send_rsc(target, rsc_content, rsc_name)             target << browse_rsc(rsc_content, rsc_name)
+#define open_link(target, url)             target << link(url)
+//### Port from Vesta general macros
+*/
 #define MAP_IMAGE_PATH "nano/images/[GLOB.using_map.path]/"
 
 #define map_image_file_name(z_level) "[GLOB.using_map.path]-[z_level].png"
@@ -140,6 +160,7 @@
 
 #define CanPhysicallyInteractWith(user, target) (target.CanUseTopicPhysical(user) == STATUS_INTERACTIVE)
 
+#define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) }}; if(x) {x.Cut(); x = null } // Second x check to handle items that LAZYREMOVE on qdel.
 #define QDEL_NULL_LIST(x) if(x) { for(var/y in x) { qdel(y) }}; if(x) {x.Cut(); x = null; } // Second x check to handle items that LAZYREMOVE on qdel.
 
 #define QDEL_NULL(x) if(x) { qdel(x) ; x = null }
@@ -155,8 +176,14 @@
 // Insert an object A into a sorted list using cmp_proc (/code/_helpers/cmp.dm) for comparison.
 #define ADD_SORTED(list, A, cmp_proc) if(!list.len) {list.Add(A)} else {list.Insert(FindElementIndex(A, list, cmp_proc), A)}
 
+//Currently used in SDQL2 stuff
+#define send_output(target, msg, control) target << output(msg, control)
+#define send_link(target, url) target << link(url)
+
 // Spawns multiple objects of the same type
 #define cast_new(type, num, args...) if((num) == 1) { new type(args) } else { for(var/i=0;i<(num),i++) { new type(args) } }
+
+#define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))
 
 #define JOINTEXT(X) jointext(X, null)
 
@@ -192,4 +219,10 @@
 
 #define FONT_GIANT(X) "<font size='5'>[X]</font>"
 
+
 #define crash_with(X) crash_at(X, __FILE__, __LINE__)
+
+
+// ############ Port from Vesta
+
+#define from_file(file_entry, target_var)                   file_entry >> (target_var)

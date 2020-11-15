@@ -25,6 +25,8 @@
 			return global.Failsafe;
 		if("GLOB")
 			return global.GLOB;
+		if("Holiday")
+			return global.Holiday;
 		if("IClog")
 			return global.IClog;
 		if("LIGHTING_CORNER_DIAGONAL")
@@ -149,6 +151,8 @@
 			return global.SSvines;
 		if("SSvote")
 			return global.SSvote;
+/*		if("SSvueui")
+			return global.SSvueui;*/
 		if("SSwebhooks")
 			return global.SSwebhooks;
 		if("SSxenoarch")
@@ -249,6 +253,8 @@
 			return global.all_robolimbs;
 		if("all_species")
 			return global.all_species;
+		if("all_traits")
+			return global.all_traits;
 		if("all_ui_styles")
 			return global.all_ui_styles;
 		if("all_unit_tests_passed")
@@ -357,6 +363,8 @@
 			return global.csrfz_check;
 		if("custom_event_msg")
 			return global.custom_event_msg;
+		if("custom_species_bases")
+			return global.custom_species_bases;
 		if("damage_icon_parts")
 			return global.damage_icon_parts;
 		if("dbcon")
@@ -395,6 +403,8 @@
 			return global.dreams;
 		if("dummy_lighting_corner")
 			return global.dummy_lighting_corner;
+		if("ear_styles_list")
+			return global.ear_styles_list;
 		if("empty_playable_ai_cores")
 			return global.empty_playable_ai_cores;
 		if("endgame_exits")
@@ -465,6 +475,10 @@
 			return global.gear_datums;
 		if("gear_tweak_free_color_choice_")
 			return global.gear_tweak_free_color_choice_;
+		if("gear_tweak_free_desc")
+			return global.gear_tweak_free_desc;
+		if("gear_tweak_free_name")
+			return global.gear_tweak_free_name;
 		if("gender_datums")
 			return global.gender_datums;
 		if("ghost_darkness_images")
@@ -483,6 +497,8 @@
 			return global.gzn_check;
 		if("hadevent")
 			return global.hadevent;
+		if("hazard_overlays")
+			return global.hazard_overlays;
 		if("hivemind_bank")
 			return global.hivemind_bank;
 		if("holder_mob_icon_cache")
@@ -559,6 +575,8 @@
 			return global.maploader;
 		if("mark")
 			return global.mark;
+		if("matchmaker")
+			return global.matchmaker;
 		if("maze_cell_count")
 			return global.maze_cell_count;
 		if("mechas_list")
@@ -617,6 +635,10 @@
 			return global.narsie_list;
 		if("navbeacons")
 			return global.navbeacons;
+		if("negative_traits")
+			return global.negative_traits;
+		if("neutral_traits")
+			return global.neutral_traits;
 		if("news_network")
 			return global.news_network;
 		if("newscaster_standard_feeds")
@@ -669,6 +691,8 @@
 			return global.plant_seed_sprites;
 		if("playable_species")
 			return global.playable_species;
+		if("positive_traits")
+			return global.positive_traits;
 		if("possible_changeling_IDs")
 			return global.possible_changeling_IDs;
 		if("power_alarm")
@@ -843,6 +867,8 @@
 			return global.syndicate_name;
 		if("tail_icon_cache")
 			return global.tail_icon_cache;
+		if("tail_styles_list")
+			return global.tail_styles_list;
 		if("tank_gauge_cache")
 			return global.tank_gauge_cache;
 		if("tape_roll_applications")
@@ -861,6 +887,8 @@
 			return global.total_lighting_sources;
 		if("total_unit_tests")
 			return global.total_unit_tests;
+		if("traits_costs")
+			return global.traits_costs;
 		if("transfer_controller")
 			return global.transfer_controller;
 		if("turbolifts")
@@ -899,6 +927,10 @@
 			return global.weighted_randomevent_locations;
 		if("whitelist")
 			return global.whitelist;
+		if("wing_icon_cache")
+			return global.wing_icon_cache;
+		if("wing_styles_list")
+			return global.wing_styles_list;
 		if("wireColours")
 			return global.wireColours;
 		if("world_topic_spam_protect_ip")
@@ -942,6 +974,8 @@
 			global.Failsafe=newval;
 		if("GLOB")
 			global.GLOB=newval;
+		if("Holiday")
+			global.Holiday=newval;
 		if("IClog")
 			global.IClog=newval;
 		if("LIGHTING_CORNER_DIAGONAL")
@@ -1066,6 +1100,8 @@
 			global.SSvines=newval;
 		if("SSvote")
 			global.SSvote=newval;
+/*		if("SSvueui")	//### Port from Vesta
+			global.SSvueui=newval;*/
 		if("SSwebhooks")
 			global.SSwebhooks=newval;
 		if("SSxenoarch")
@@ -1166,6 +1202,8 @@
 			global.all_robolimbs=newval;
 		if("all_species")
 			global.all_species=newval;
+		if("all_traits")
+			global.all_traits=newval;
 		if("all_ui_styles")
 			global.all_ui_styles=newval;
 		if("all_unit_tests_passed")
@@ -1274,6 +1312,8 @@
 			global.csrfz_check=newval;
 		if("custom_event_msg")
 			global.custom_event_msg=newval;
+		if("custom_species_bases")
+			global.custom_species_bases=newval;
 		if("damage_icon_parts")
 			global.damage_icon_parts=newval;
 		if("dbcon")
@@ -1312,6 +1352,8 @@
 			global.dreams=newval;
 		if("dummy_lighting_corner")
 			global.dummy_lighting_corner=newval;
+		if("ear_styles_list")
+			global.ear_styles_list=newval;
 		if("empty_playable_ai_cores")
 			global.empty_playable_ai_cores=newval;
 		if("endgame_exits")
@@ -1382,6 +1424,10 @@
 			global.gear_datums=newval;
 		if("gear_tweak_free_color_choice_")
 			global.gear_tweak_free_color_choice_=newval;
+		if("gear_tweak_free_desc")
+			global.gear_tweak_free_desc=newval;
+		if("gear_tweak_free_name")
+			global.gear_tweak_free_name=newval;
 		if("gender_datums")
 			global.gender_datums=newval;
 		if("ghost_darkness_images")
@@ -1400,6 +1446,8 @@
 			global.gzn_check=newval;
 		if("hadevent")
 			global.hadevent=newval;
+		if("hazard_overlays")
+			global.hazard_overlays=newval;
 		if("hivemind_bank")
 			global.hivemind_bank=newval;
 		if("holder_mob_icon_cache")
@@ -1476,6 +1524,8 @@
 			global.maploader=newval;
 		if("mark")
 			global.mark=newval;
+		if("matchmaker")
+			global.matchmaker=newval;
 		if("maze_cell_count")
 			global.maze_cell_count=newval;
 		if("mechas_list")
@@ -1534,6 +1584,10 @@
 			global.narsie_list=newval;
 		if("navbeacons")
 			global.navbeacons=newval;
+		if("negative_traits")
+			global.negative_traits=newval;
+		if("neutral_traits")
+			global.neutral_traits=newval;
 		if("news_network")
 			global.news_network=newval;
 		if("newscaster_standard_feeds")
@@ -1586,6 +1640,8 @@
 			global.plant_seed_sprites=newval;
 		if("playable_species")
 			global.playable_species=newval;
+		if("positive_traits")
+			global.positive_traits=newval;
 		if("possible_changeling_IDs")
 			global.possible_changeling_IDs=newval;
 		if("power_alarm")
@@ -1760,6 +1816,8 @@
 			global.syndicate_name=newval;
 		if("tail_icon_cache")
 			global.tail_icon_cache=newval;
+		if("tail_styles_list")
+			global.tail_styles_list=newval;
 		if("tank_gauge_cache")
 			global.tank_gauge_cache=newval;
 		if("tape_roll_applications")
@@ -1778,6 +1836,8 @@
 			global.total_lighting_sources=newval;
 		if("total_unit_tests")
 			global.total_unit_tests=newval;
+		if("traits_costs")
+			global.traits_costs=newval;
 		if("transfer_controller")
 			global.transfer_controller=newval;
 		if("turbolifts")
@@ -1816,6 +1876,10 @@
 			global.weighted_randomevent_locations=newval;
 		if("whitelist")
 			global.whitelist=newval;
+		if("wing_icon_cache")
+			global.wing_icon_cache=newval;
+		if("wing_styles_list")
+			global.wing_styles_list=newval;
 		if("wireColours")
 			global.wireColours=newval;
 		if("world_topic_spam_protect_ip")
@@ -1832,7 +1896,7 @@
 			global.z_levels=newval;
 		if("zone_blocked")
 			global.zone_blocked=newval;
-		
+
 /var/list/_all_globals=list(
 	"ANTAG_FREQS",
 	"AWAY_FREQS_ASSIGNED",
@@ -1846,6 +1910,7 @@
 	"Debug2",
 	"Failsafe",
 	"GLOB",
+	"Holiday",
 	"IClog",
 	"LIGHTING_CORNER_DIAGONAL",
 	"Master",
@@ -1908,6 +1973,7 @@
 	"SSturf",
 	"SSvines",
 	"SSvote",
+	"SSvueui",
 	"SSwebhooks",
 	"SSxenoarch",
 	"SSzcopy",
@@ -1958,6 +2024,7 @@
 	"all_objectives",
 	"all_robolimbs",
 	"all_species",
+	"all_traits",
 	"all_ui_styles",
 	"all_unit_tests_passed",
 	"all_virtual_listeners",
@@ -2012,6 +2079,7 @@
 	"crew_repository",
 	"csrfz_check",
 	"custom_event_msg",
+	"custom_species_bases",
 	"damage_icon_parts",
 	"dbcon",
 	"dbcon_old",
@@ -2031,6 +2099,7 @@
 	"doppler_arrays",
 	"dreams",
 	"dummy_lighting_corner",
+	"ear_styles_list",
 	"empty_playable_ai_cores",
 	"endgame_exits",
 	"endgame_safespawns",
@@ -2066,6 +2135,8 @@
 	"gas_data",
 	"gear_datums",
 	"gear_tweak_free_color_choice_",
+	"gear_tweak_free_desc",
+	"gear_tweak_free_name",
 	"gender_datums",
 	"ghost_darkness_images",
 	"ghost_sightless_images",
@@ -2075,6 +2146,7 @@
 	"gravity_is_on",
 	"gzn_check",
 	"hadevent",
+	"hazard_overlays",
 	"hivemind_bank",
 	"holder_mob_icon_cache",
 	"host",
@@ -2113,6 +2185,7 @@
 	"map_sectors",
 	"maploader",
 	"mark",
+	"matchmaker",
 	"maze_cell_count",
 	"mechas_list",
 	"merged",
@@ -2142,6 +2215,8 @@
 	"narsie_cometh",
 	"narsie_list",
 	"navbeacons",
+	"negative_traits",
+	"neutral_traits",
 	"news_network",
 	"newscaster_standard_feeds",
 	"next_account_number",
@@ -2168,6 +2243,7 @@
 	"pipe_colors",
 	"plant_seed_sprites",
 	"playable_species",
+	"positive_traits",
 	"possible_changeling_IDs",
 	"power_alarm",
 	"powerinstances",
@@ -2255,15 +2331,18 @@
 	"syndicate_code_response",
 	"syndicate_name",
 	"tail_icon_cache",
+	"tail_styles_list",
 	"tank_gauge_cache",
 	"tape_roll_applications",
 	"telecomms_list",
+	"text_tag_icons",
 	"ticket_panels",
 	"tickets",
 	"total_lighting_corners",
 	"total_lighting_overlays",
 	"total_lighting_sources",
 	"total_unit_tests",
+	"traits_costs",
 	"transfer_controller",
 	"turbolifts",
 	"turret_icons",
@@ -2283,6 +2362,8 @@
 	"weighted_mundaneevent_locations",
 	"weighted_randomevent_locations",
 	"whitelist",
+	"wing_icon_cache",
+	"wing_styles_list",
 	"wireColours",
 	"world_topic_spam_protect_ip",
 	"world_topic_spam_protect_time",

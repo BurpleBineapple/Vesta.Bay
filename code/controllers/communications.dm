@@ -105,6 +105,7 @@ var/const/PUBLIC_HIGH_FREQ	= 1489
 var/const/RADIO_HIGH_FREQ	= 1600
 
 var/const/BOT_FREQ	= 1447
+var/const/SKRELL_FREQ = 1598
 var/const/COMM_FREQ = 1353
 var/const/ERT_FREQ	= 1345
 var/const/AI_FREQ	= 1343
@@ -117,6 +118,7 @@ var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusi
 var/const/PUB_FREQ = 1459
 var/const/HAIL_FREQ = 1463
 var/const/SEC_FREQ = 1359
+var/const/INF_FREQ = 1369
 var/const/ENG_FREQ = 1357
 var/const/MED_FREQ = 1355
 var/const/SCI_FREQ = 1351
@@ -153,17 +155,20 @@ var/list/radiochannels = list(
 	"Medical"		= MED_FREQ,
 	"Engineering"	= ENG_FREQ,
 	"Security" 		= SEC_FREQ,
+	"Infantry" 		= INF_FREQ,
 	"Response Team" = ERT_FREQ,
 	"Special Ops" 	= DTH_FREQ,
-	"Mercenary" 	= SYND_FREQ,
+	"Terrorist" 	= SYND_FREQ,
 	"Raider"		= RAID_FREQ,
 	"Exploration"	= EXP_FREQ,
 	"Supply" 		= SUP_FREQ,
 	"Service" 		= SRV_FREQ,
 	"AI Private"	= AI_FREQ,
 	"Entertainment" = ENT_FREQ,
-	"Medical (I)"	= MED_I_FREQ,
-	"Security (I)"	= SEC_I_FREQ
+	"Medical(I)"	= MED_I_FREQ,
+	"Security(I)"	= SEC_I_FREQ,
+	"Infantry"		= INF_FREQ,
+	"Recon"			= SKRELL_FREQ
 )
 
 var/list/channel_color_presets = list(
@@ -194,7 +199,7 @@ var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
 var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
 
 //Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ, EXP_FREQ, ENT_FREQ, MED_I_FREQ, SEC_I_FREQ)
+var/list/DEPT_FREQS = list(INF_FREQ, AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ, EXP_FREQ, ENT_FREQ, MED_I_FREQ, SEC_I_FREQ)
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -219,6 +224,8 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, SEC_FREQ, SCI
 		return "engradio"
 	if(frequency == SCI_FREQ)
 		return "sciradio"
+	if(frequency == INF_FREQ)
+		return "infradio"
 	if(frequency == MED_FREQ)
 		return "medradio"
 	if(frequency == EXP_FREQ) // exploration
